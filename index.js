@@ -21,6 +21,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', routes)
+app.get('/', (req,res)=>{
+    return res.status(200).send({response: 'Hola Daniel'})
+})
 
 const server = http.createServer(app);
 
