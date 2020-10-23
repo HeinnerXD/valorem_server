@@ -22,7 +22,10 @@ app.use((req, res, next) => {
 
 app.use('/api', routes)
 app.get('/', (req,res)=>{
-    return res.status(200).send({response: 'Hola Daniel'})
+    return res.status(200).send({
+        sever: 'SERVER CREATED TO VALOREM',
+        response: 'Hola Daniel'
+    })
 })
 
 const server = http.createServer(app);
