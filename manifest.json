@@ -1,0 +1,6 @@
+applications:
+- name: valoremServer
+  path: .
+  buildpack: nodejs_buildpack
+  memory: 100M
+  disk_quota: 100M

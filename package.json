@@ -1,14 +1,20 @@
 {
   "name": "Server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server created to Valorem Company",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && node index.js",
+    "start": "nodemon index.js",
+    // "start": "npm install && node index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Heinner Mayorga",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Basselbi/nodeSRV.git"
+  },
+
   "license": "ISC",
   "dependencies": {
     "@sap/hana-client": "^2.6.58",
