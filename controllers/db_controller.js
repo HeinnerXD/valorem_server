@@ -11,4 +11,14 @@ function validateLogin(req, res) {
     });
 }
 
-module.exports = { validateLogin }
+function changePassword(req, res) {
+    dbModule.changePasswordModule(req.body.user, req.body.password, req.body.newPassword, (error, response) => {
+        if (error) {
+            return res.status(404).send({ error })
+        } else {
+            return res.status(200).send({ response })
+        }
+    });
+}
+
+module.exports = { validateLogin, changePassword }
