@@ -11,12 +11,10 @@ router.post('/cleanServer', (req, res)=>{
     const dir = './valoremFiles';
     fs.rmdir(dir, { recursive: true }, (err) => {
         if (err) {
-            return res.status(500).send({err})
-            console.log(err);
-        }else{
-            console.log(`${dir} is deleted!`);
-            return res.status(200).send({response: `${dir} is deleted!`})
+            throw err
         }
+        console.log(`${dir} is deleted!`);
+        return res.status(200).send({response: `${dir} is deleted!`})
     });
 });
  
