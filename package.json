@@ -13,7 +13,6 @@
     "type": "git",
     "url": "git+https://github.com/HeinnerXD/valorem_server.git"
   },
-
   "license": "ISC",
   "dependencies": {
     "@sap/hana-client": "^2.6.58",
@@ -22,6 +21,7 @@
     "http": "0.0.1-security",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
+    "path": "^0.12.7",
     "sp-download": "^1.2.1",
     "sppull": "^2.6.7"
   }

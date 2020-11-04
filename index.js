@@ -7,6 +7,7 @@ const app = express();
 const keys = require('./keys');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const path = require('path');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+
+app.use(express.static(path.join(__dirname, '/valoremFiles')));
 
 app.use('/api', routes)
 app.get('/', (req,res)=>{
