@@ -7,7 +7,7 @@ const fs = require('fs')
 router.post('/connect', dbController.validateLogin);
 router.post('/password', dbController.changePassword);
 router.post('/downloadFile', sharepointController.downloadFile );
-router.get('/cleanServer', (req, res)=>{
+router.post('/cleanServer', (req, res)=>{
     const dir = './valoremFiles';
     fs.rmdir(dir, { recursive: true }, (err) => {
         if (err) {
