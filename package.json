@@ -1,6 +1,6 @@
 {
   "name": "Server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server created to Valorem Company",
   "main": "index.js",
   "scripts": {
@@ -18,10 +18,10 @@
     "@sap/hana-client": "^2.6.58",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
-    "path": "^0.12.7",
     "sp-download": "^1.2.1",
     "sppull": "^2.6.7"
   }
