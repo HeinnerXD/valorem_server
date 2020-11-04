@@ -22,6 +22,7 @@
     "http": "0.0.1-security",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
+    "rimraf": "^3.0.2",
     "sp-download": "^1.2.1",
     "sppull": "^2.6.7"
   }
