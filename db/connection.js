@@ -17,7 +17,19 @@ function validateUserDb(user, password, handler) {
     if (err) {
       handler(err, null)
     } else {
-      handler(null, 'Conectado a la base de datos')
+      conn.exec('SELECT * FROM GRANTED_ROLES',  function (err, result) {
+        if (err) throw err;
+        
+        console.log(result);
+        // output --> Name: Tee Shirt, Description: V-neck
+        var response = {
+          response: 'Conectado a la base de datos',
+          role: result
+        }
+        handler(null, response)
+        
+      })
+      
     }
   });
 }

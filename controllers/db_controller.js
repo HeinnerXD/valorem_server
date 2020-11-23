@@ -6,7 +6,7 @@ function validateLogin(req, res) {
         if (error) {
             return res.status(404).send({ error })
         } else {
-            return res.status(200).send({ response })
+            return res.status(200).send( response )
         }
     });
 }

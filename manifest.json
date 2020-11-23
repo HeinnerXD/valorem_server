@@ -4,3 +4,4 @@ applications:
   buildpack: nodejs_buildpack
   memory: 100M
   disk_quota: 100M
+  no-route: true
