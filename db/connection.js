@@ -17,9 +17,8 @@ function validateUserDb(user, password, handler) {
     if (err) {
       handler(err, null)
     } else {
-      conn.exec('SELECT * FROM GRANTED_ROLES',  function (err, result) {
+      conn.exec("SELECT * FROM GRANTED_ROLES WHERE GRANTEE='" + user.toUpperCase() + "'", function (err, result) {
         if (err) throw err;
-        
         console.log(result);
         // output --> Name: Tee Shirt, Description: V-neck
         var response = {
@@ -27,9 +26,9 @@ function validateUserDb(user, password, handler) {
           role: result
         }
         handler(null, response)
-        
+
       })
-      
+
     }
   });
 }
