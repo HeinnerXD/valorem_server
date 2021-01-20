@@ -17,18 +17,26 @@ function validateUserDb(user, password, handler) {
     if (err) {
       handler(err, null)
     } else {
-      conn.exec("SELECT * FROM GRANTED_ROLES WHERE GRANTEE='" + user.toUpperCase() + "'", function (err, result) {
-        if (err) throw err;
-        console.log(result);
-        // output --> Name: Tee Shirt, Description: V-neck
-        var response = {
-          response: 'Conectado a la base de datos',
-          role: result
-        }
-        handler(null, response)
-
+      conn.exec("SELECT * FROM GRANTED_ROLES WHERE GRANTEE='" + user.toUpperCase() + "'", function (err, resultLogin) {
+        if (err) {
+          handler(err, null)
+        } else {
+          conn.exec("SELECT PERIODO, HASTA FROM DWH_HDI_DB_1.BPC_PERIODO_VERSION WHERE VERSION ='REAL'", function (err, resultData) {
+            if (err) {
+              handler(err, null)
+            } else {
+              console.log(resultLogin);
+              console.log(resultData);
+              var response = {
+                response: 'Conectado a la base de datos',
+                role: resultLogin,
+                data: resultData
+              }
+              handler(null, response)
+            }
+          })
+        }   
       })
-
     }
   });
 }
