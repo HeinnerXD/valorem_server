@@ -8,6 +8,7 @@ var rimraf = require("rimraf");
 router.post('/connect', dbController.validateLogin);
 router.post('/password', dbController.changePassword);
 router.post('/downloadFile', sharepointController.downloadFile);
+router.post('/downloadFileRoot', sharepointController.downloadFileRoot);
 router.post('/cleanServer', (req, res) => {
     rimraf("./valoremFiles", function () { 
         console.log("done"); 
