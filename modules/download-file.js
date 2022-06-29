@@ -24,12 +24,9 @@ function downloadModule(name, username, url, fileName, handler) {
 
     sppull(context, options)
         .then((downloadResults) => {
-            console.log("Files are downloaded");
-            console.log("For more, please check the results", JSON.stringify(downloadResults));
             handler(null, {success: "Files are downloaded: " + JSON.stringify(downloadResults)})
         })
         .catch((err) => {
-            console.log("Core error has happened", err);
             handler({error: "Core error has happened", err}, null)
         });
 }
@@ -37,22 +34,3 @@ function downloadModule(name, username, url, fileName, handler) {
 module.exports = {
     downloadModule
 }
-
-//process.env.USERPROFILE + '/valoremFiles' || 
-
-// creds: {
-//     name: "DMSShuttle",
-//     username: "lgarcia@valorem.com.co",
-//     password: "dpwlcnjfxqtpspgg"
-// }
-
-
-//   var options = {
-//     spRootFolder: "_catalogs/masterpage",
-//     dlRootFolder: "./Downloads/Assets",
-//     strictObjects: [
-//         "/Display%20Templates/Search", // All files and folders under /subsite/_catalogs/masterpage/Display Templates/Search folder
-//         "/Display%20Templates/Filters/Filter_Slider.js", // Only Filter_Slider.js from /subsite/_catalogs/masterpage/Display Templates/Filters
-//         "/responsive.master" // Only responsive.master file from /subsite/_catalogs/masterpage
-//     ]
-// };

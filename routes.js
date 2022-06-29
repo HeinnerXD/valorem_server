@@ -12,18 +12,8 @@ router.post('/downloadFile', sharepointController.downloadFile);
 router.post('/downloadFileRoot', sharepointController.downloadFileRoot);
 router.post('/cleanServer', (req, res) => {
     rimraf("./valoremFiles", function () { 
-        console.log("done"); 
         res.status(200).send({response: "Directory deleted"})
     });
 });
 
 module.exports = router;
-
-// const dir = './valoremFiles';
-//     fs.rmdir(dir, { recursive: true }, (err) => {
-//         if (err) {
-//             throw err
-//         }
-//         console.log(`${dir} is deleted!`);
-//         return res.status(200).send({response: `${dir} is deleted!`})
-//     });

@@ -24,12 +24,9 @@ function downloadModule(name, username, url, fileName, handler) {
 
     sppull(context, options)
         .then((downloadResults) => {
-            console.log("Files are downloaded");
-            console.log("For more, please check the results", JSON.stringify(downloadResults));
             handler(null, {success: "Files are downloaded: " + JSON.stringify(downloadResults)})
         })
         .catch((err) => {
-            console.log("Core error has happened", err);
             handler({error: "Core error has happened", err}, null)
         });
 }
