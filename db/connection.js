@@ -80,16 +80,14 @@ function changePasswordModule(user, password, newPassword, checkKoba, handler) {
     if (err) {
       handler(err, null);
     } else {
-      conn.exec(
-        "ALTER USER " + user + " PASSWORD " + newPassword,
-        function (err, response) {
-          if (err) {
-            handler(err, null);
-          } else {
-            handler(null, "Conectado a la base de datos: " + response);
-          }
+      const sqlSentence = `ALTER USER ${user} PASSWORD "${newPassword}"`;
+      conn.exec(sqlSentence, function (err, response) {
+        if (err) {
+          handler(err, null);
+        } else {
+          handler(null, "Conectado a la base de datos: " + response);
         }
-      );
+      });
     }
   });
 }
@@ -107,43 +105,38 @@ function unlockUserModule(user, email, checkKoba, handler) {
     encrypt: "true",
     sslValidateCertiicate: "false",
   };
-
   conn.connect(conn_params, function (err) {
     if (err) {
       handler(err, null);
     } else {
-      conn.exec(
-        "SELECT * FROM USER_PARAMETERS WHERE USER_NAME='" + user + "'",
-        function (err, response) {
-          if (err) {
-            handler(err, null);
+      const sqlSentenceInitial = `SELECT * FROM USER_PARAMETERS WHERE USER_NAME='${user}'`;
+      conn.exec(sqlSentenceInitial, function (err, response) {
+        if (err) {
+          handler(err, null);
+        } else {
+          if (response.length === 0) {
+            handler("No se ha encontrado el usuario: " + user, null);
           } else {
-            if (response.length === 0) {
-              handler("No se ha encontrado el usuario: " + user, null);
+            if (response[0].VALUE === email) {
+              const sqlSentence = `ALTER USER ${user} RESET CONNECT ATTEMPTS`;
+              conn.exec(sqlSentence, function (err, resultData) {
+                if (err) {
+                  handler(err, null);
+                } else {
+                  var response = {
+                    response: "Usuario Desbloqueado",
+                    user: user,
+                    email: email,
+                  };
+                  handler(null, response);
+                }
+              });
             } else {
-              if (response[0].VALUE === email) {
-                conn.exec(
-                  "ALTER USER " + user + " ACTIVATE USER NOW",
-                  function (err, resultData) {
-                    if (err) {
-                      handler(err, null);
-                    } else {
-                      var response = {
-                        response: "Usuario Desbloqueado",
-                        user: user,
-                        email: email,
-                      };
-                      handler(null, response);
-                    }
-                  }
-                );
-              } else {
-                handler("Email incorrecto para el usuario: " + user, null);
-              }
+              handler("Email incorrecto para el usuario: " + user, null);
             }
           }
         }
-      );
+      });
     }
   });
 }
